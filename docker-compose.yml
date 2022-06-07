@@ -1,0 +1,46 @@
+version: '2.4'
+
+services: 
+  nodejs_app: #App de Node
+    build: 
+      context: .
+      args: 
+        - NODE_ENV=development
+    env_file: .env
+    command: ../node_modules/nodemon/bin/nodemon.js --inspect=0.0.0.0=9229 -L -r dotenv/config ./server/index.js
+    tty: true
+    volumes: 
+      - .:/opt/node_app/app:delegated
+      # Hacer "bind-mount" de estos archivos de forma explícita me va a permitir agregar paquetes durante el proceso
+      # de desarrollo sin necesidad de re-construir la imagen de la aplicación. 
+      # Por ejemplo: Para agregar express a la app mientras estamos desarrollando, solamente basta con instalar ese paquete 
+      # dentro de la carpeta y nodemon se va a encargar de reconstruir internamente y reiniciar la app. 
+      # Nuestros cambios van a durar hasta el "docker-compose down" y van a estar disponibles y guardados en la carpeta 
+      # del host para el siguiente build
+      - ./package.json:/opt/node_app/package.json
+      - ./package-lock.json:/opt/node_app/package-lock.json
+      # Esto es un contrafuegos para evitar que los node_modules de el equipo host se vayan accidentalmente al contendor.
+      - notused:/opt/node_app/app/node_modules
+    environment:
+      - NODE_ENV=development
+    ports: 
+      - 8000:8000
+      - 9229:9229
+    
+  db: # PostgreSQL
+    image: postgres:14-alpine
+    restart: always
+    ports: 
+      - 5432:5432
+    environment:
+      - POSTGRES_PORT=5432
+      - POSTGRES_HOST=postgres
+      - POSTGRES_DB=tasks
+      - POSTGRES_USER=tasks_user
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes: 
+  db-data:
+  notused:
