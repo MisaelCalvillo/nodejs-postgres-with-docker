@@ -3,7 +3,7 @@ FROM node:16-slim
 
 USER root
 RUN buildDeps="g++ make python" \ 
-    && apt-get update --qq \
+    && apt-get update -qq \
     && apt-get install -qy --no-install-recommends curl $buildDeps
 
 # Configura nuestro entorno de Node, tanto "production" o "development"
@@ -33,10 +33,16 @@ WORKDIR /opt/node_app
 # instalaciones de dependencias que hace npm las haga con el mismo usuario que corre la app.
 # https://github.com/nodejs/docker-node/blob/master/docs/BestPractices.md#non-root-user
 USER node
-COPY package.json ./ 
+COPY package*.json ./ 
 
 # Instala dependencias con npm y posteriormente limpia el cache
 RUN npm ci --no-optional && npm cache clean --force
+
+# Borra binarios de instalación que ya no se van a necesitar posterior a la instalacion de dependencias
+USER root 
+RUN apt-get remove -y --purge --auto-remove $buildDeps \
+     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.node-gyp /usr/local/lib/node_modules/npm/node_modules/node-gyp
+USER node
 
 # Agrega nuestros node_modules al PATH del sistema
 ENV PATH /opt/node_app/node_modules/.bin:$PATH
