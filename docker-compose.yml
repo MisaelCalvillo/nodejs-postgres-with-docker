@@ -44,3 +44,23 @@ services:
 volumes: 
   db-data:
   notused:
+
+
+#   version: '2.4'
+
+# services: 
+#   react_app:
+#     build: 
+#       context: .
+#       args: 
+#         - NODE_ENV=development
+#     volumes: 
+#       - '.:/app'
+#       - notused:/app/node_modules
+#     ports: 
+#       - 3002:3000
+#     environment:
+#       - NODE_ENV=production
+
+# volumes: 
+#   notused:

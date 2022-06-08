@@ -1,0 +1,13 @@
+version: '2.4'
+
+services: 
+  react_app:
+    build: 
+      context: .
+      dockerfile: Dockerfile.prod
+      args: 
+        - NODE_ENV=production
+    ports: 
+      - 1337:80
+    environment:
+      - NODE_ENV=production
