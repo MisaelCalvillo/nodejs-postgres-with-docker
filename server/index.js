@@ -13,6 +13,8 @@ app.get('/error', (req, res) => {
   throw new Error();
 });
 
+throw new Error();
+
 app.listen(PORT, () => {
   console.log(`El servidor esta corriendo en http://localhost:${PORT}`)
 });
