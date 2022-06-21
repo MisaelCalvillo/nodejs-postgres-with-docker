@@ -25,5 +25,6 @@ jobs:
       - run: npm -v 
       - run: echo "Por último vamos a ejecutar los tests 🧪"
       - run: npm run test
+      - run: echo ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
 
