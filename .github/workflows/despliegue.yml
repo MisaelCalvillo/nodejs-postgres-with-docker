@@ -33,6 +33,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSHKEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
+          password: ${{ secrets.PASSWORD }}
           scripts: |
             # Imprime en pantalla algo 
             echo "Esto corre en el droplet"
@@ -42,7 +43,7 @@ jobs:
             git pull
             # Reload de PM2
             echo "Reload PM2 🚀"
-            pm2 reload all
+            sudo pm2 reload all
 
       - run: echo "Success ✅"
             
