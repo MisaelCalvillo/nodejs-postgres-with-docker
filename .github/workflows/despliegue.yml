@@ -9,6 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - uses: actions/checkout@v3
+      - uses: actions/node@v3
+          width:'
+            node-version: '14'
+      - run: node -v 
+      - run: npm -v 
       - run: ls -al 
       - run: echo "Primer acción 🚀"
       - run: echo "Ahora sigue bajar el repo 🔥"
