@@ -44,6 +44,6 @@ jobs:
             echo "Reload PM2 🚀"
             pm2 reload all
 
-      - uses: Success ✅
+      - run: echo "Success ✅"
             
 
