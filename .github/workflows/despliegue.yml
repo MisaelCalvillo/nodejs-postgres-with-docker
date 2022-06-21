@@ -8,12 +8,19 @@ jobs:
   print-on-screen: 
     runs-on: ubuntu-latest
     steps: 
+      - run: echo "Primer acción 🚀"
+      - run: echo "Ahora sigue bajar el repo 🔥"
       - uses: actions/checkout@v3
+      - run: echo "Ahora sigue validar los archivos descargados de Github ✅"
+      - run: ls -al 
+      - run: echo "Ahora a instalar Node.js versión 14 🔥"
       - uses: actions/setup-node@v3
         with:
             node-version: '14'
+      - run: echo "Ahora sigue validar la instalación 14 ✅"
       - run: node -v 
       - run: npm -v 
-      - run: ls -al 
-      - run: echo "Primer acción 🚀"
-      - run: echo "Ahora sigue bajar el repo 🔥"
+      - run: echo "Por último vamos a ejecutar los tests 🧪"
+      - run: npm run test
+      
+
