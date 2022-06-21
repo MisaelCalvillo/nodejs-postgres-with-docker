@@ -39,7 +39,7 @@ jobs:
             # Vamos a irnos a la carpeta
             cd app/nodejs-postgres-with-docker/
             # Hacer git pull 
-            git pull && ${{ secrets.PASSPHRASE }}
+            git pull
             # Reload de PM2
             echo "Reload PM2 🚀"
             pm2 reload all
