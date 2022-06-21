@@ -25,6 +25,25 @@ jobs:
       - run: npm -v 
       - run: echo "Por último vamos a ejecutar los tests 🧪"
       - run: npm run test
-      - run: echo ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      
+      - name: Connect via SSH 🔌
+        uses: appleboy/ssh-action@v0.1.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSHKEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          scripts: |
+            # Imprime en pantalla algo 
+            echo "Esto corre en el droplet"
+            # Vamos a irnos a la carpeta
+            cd app/nodejs-postgres-with-docker/
+            # Hacer git pull 
+            git pull && ${{ secrets.PASSPHRASE }}
+            # Reload de PM2
+            echo "Reload PM2 🚀"
+            pm2 reload all
 
+      - run: echo "Success ✅"
+            
 
