@@ -1,0 +1,13 @@
+name: despliegue
+on:
+  push: 
+    branches: 
+      - 'main'
+
+jobs: 
+  print-on-screen: 
+    runs-on: ubuntu-latest
+    steps: 
+      - run: echo "Primer acción 🚀"
+      - run: echo "Ahora sigue bajar el repo 🔥"
+      
