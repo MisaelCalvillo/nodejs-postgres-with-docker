@@ -20,6 +20,11 @@ app.get('/', (req, res) => {
   res.send('Servidor de Devf DevOps funcionando y con Github Actions 🚀, si esto pasa tuvimos éxito')
 })
 
+
+app.get('/test', (req, res) => {
+  res.send('Ruta de prueba')
+})
+
 app.get('/error', (req, res) => {
   throw new Error();
 });
