@@ -33,6 +33,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSHKEY }}
           password: ${{ secrets.PASSWORD }}
+          passphrase: ${{ secrets.PASSPHRASE }}
           script_stop: true
           scripts: echo "Esto corre en el droplet" && cd app/nodejs-postgres-with-docker/ && git pull && sudo pm2 reload all
 
