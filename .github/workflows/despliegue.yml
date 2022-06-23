@@ -49,11 +49,11 @@ jobs:
   postman_testing:
     needs: deployemnt
     runs-on: ubuntu-latest
-      steps: 
-        - uses: actions/checkout@master
-        - uses: matt-ball/newman-action@master
-          with:
-            collection: postman_collection.json
-            environment: postman_environment.production.json
+    steps: 
+      - uses: actions/checkout@master
+      - uses: matt-ball/newman-action@master
+        with:
+          collection: postman_collection.json
+          environment: postman_environment.production.json
 
-        - run: echo "Se probó con éxito"
+      - run: echo "Se probó con éxito"
