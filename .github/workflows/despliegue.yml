@@ -45,7 +45,7 @@ jobs:
             ./download_git.sh
 
       - run: npm install
-      - run: echo "Success ✅          
+      - run: echo "Success ✅"       
   postman_testing:
     name: Test con Postman
     needs: deployment
