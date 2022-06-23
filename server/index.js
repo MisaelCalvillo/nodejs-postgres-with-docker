@@ -17,7 +17,7 @@ function errorHandler (err, req, res, next) {
 app.use(errorHandler);
 
 app.get('/', (req, res) => {
-  res.send('Servidor de Devf DevOps funcionando y con Github Actions 🚀. CI / CD working ✅')
+  res.send('Servidor de Devf DevOps funcionando y con Github Actions 🚀. CI / CD test 1')
 })
 
 
