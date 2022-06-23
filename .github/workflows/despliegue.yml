@@ -42,7 +42,6 @@ jobs:
             cd nodejs-postgres-with-docker
             ls -al
             ./download_git.sh
-            sudo pm2 reload all
 
       - run: npm install
       - run: echo "Success ✅"
