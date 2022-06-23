@@ -8,7 +8,7 @@ on:
 #       - 'main'
 
 jobs: 
-  print-on-screen: 
+  deployment: 
     runs-on: ubuntu-latest
     steps: 
       - run: echo "Primer acción 🚀"
@@ -46,4 +46,14 @@ jobs:
       - run: npm install
       - run: echo "Success ✅"
             
+  postman_testing:
+    needs: deployemnt
+    runs-on: ubuntu-latest
+      steps: 
+        - uses: actions/checkout@master
+        - uses: matt-ball/newman-action@master
+          with:
+            collection: postman_collection.json
+            environment: postman_environment.production.json
 
+        - run: echo "Se probó con éxito"
