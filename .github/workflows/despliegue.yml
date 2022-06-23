@@ -9,6 +9,7 @@ on:
 
 jobs: 
   deployment: 
+    name: Despliegue
     runs-on: ubuntu-latest
     steps: 
       - run: echo "Primer acción 🚀"
@@ -44,10 +45,10 @@ jobs:
             ./download_git.sh
 
       - run: npm install
-      - run: echo "Success ✅"
-            
+      - run: echo "Success ✅          
   postman_testing:
-    needs: deployemnt
+    name: Test con Postman
+    needs: deployment
     runs-on: ubuntu-latest
     steps: 
       - uses: actions/checkout@master
