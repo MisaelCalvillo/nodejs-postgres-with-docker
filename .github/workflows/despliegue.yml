@@ -3,9 +3,9 @@ on:
   push: 
     branches: 
       - 'main'
-  pull_request: 
-    branches: 
-      - 'main'
+#   pull_request: 
+#     branches: 
+#       - 'main'
 
 jobs: 
   print-on-screen: 
@@ -32,19 +32,11 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSHKEY }}
-          passphrase: ${{ secrets.PASSPHRASE }}
           password: ${{ secrets.PASSWORD }}
-          scripts: |
-            # Imprime en pantalla algo 
-            echo "Esto corre en el droplet"
-            # Vamos a irnos a la carpeta
-            cd app/nodejs-postgres-with-docker/
-            # Hacer git pull 
-            git pull
-            # Reload de PM2
-            echo "Reload PM2 🚀"
-            sudo pm2 reload all
+          script_stop: true
+          scripts: echo "Esto corre en el droplet" && cd app/nodejs-postgres-with-docker/ && git pull && sudo pm2 reload all
 
+      - run: npm install
       - run: echo "Success ✅"
             
 
