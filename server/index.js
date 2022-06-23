@@ -29,6 +29,27 @@ app.get('/test', (req, res) => {
   res.send('Ruta de prueba')
 })
 
+app.post('/login', (req, res) => {
+
+  return res.status(200).json({
+    userToken: '12345',
+  });
+});
+
+app.get('/user', (req, res) => {
+  console.log(req.headers)
+  if (req.headers.authorization !== 'Bearer 12345') {
+    return res.status(404).json({ 
+      error: 'No tienes permiso :('
+    })
+  }
+  
+  return res.status(200).json({
+    name: 'Misael', 
+    age: 25
+  })
+});
+
 app.get('/error', (req, res) => {
   throw new Error();
 });
