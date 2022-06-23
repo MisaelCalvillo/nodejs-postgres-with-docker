@@ -20,6 +20,10 @@ app.get('/', (req, res) => {
   res.send('Servidor de Devf DevOps funcionando y con Github Actions 🚀. CI / CD test 3')
 })
 
+app.get('/ruta2', (req, res) => {
+  res.send('Estas en al ruta 2')
+})
+
 
 app.get('/test', (req, res) => {
   res.send('Ruta de prueba')
